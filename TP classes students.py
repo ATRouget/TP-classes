@@ -27,6 +27,7 @@ class Student:
         else :
             return -1
 
+
 try:
     student = Student("Achille", "Talon")
     student.add_grade("History", 10.)
