@@ -38,5 +38,16 @@ class Class:
                 student = self.pupils[first_name + " " + last_name]
                 for n in notes :
                     student.add_grade(topic, float(n))
+    
+    def catalog(self):
+        C = {}
+        for eleve in self.pupils :
+            matières = self.pupils[eleve].followed_topics()
+            for m in matières :
+                if m in C :
+                    C[m] = C[m] + 1
+                else :
+                    C[m] = 1
+        return C
 
 
