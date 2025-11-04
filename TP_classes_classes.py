@@ -20,22 +20,13 @@ class Class:
             return self.pupils[first_name + " " + last_name]
         else :
             return None
+        
+    def load_students_from_file(self, filename: str) :
+        with open(filename, 'r', encoding = 'utf-8') as file :
+            for line in file :
+                first_name, last_name = line.strip().split(',')
+                student = Student(first_name, last_name)
+                self.add_student(student)
 
 
-
-
-
-try:
-    classe = Class("P20")
-    student = Student("Matthieu", "Mazière")
-    classe.add_student(student)
-    new_student = classe.get_student("Matthieu", "Mazière")
-    assert student == new_student
-    new_student = classe.get_student("Jérôme", "Adnot")
-    assert new_student is None
-except Exception as e:
-    print("OOPS - Something's wrong")
-    print(f"Error message : {e}")
-else:
-    print('Congrats ! Your implementation works !')
 
