@@ -1,4 +1,5 @@
 from collections import defaultdict
+from TP_classes_students import student
 
 class Class:
     def __init__(self, classname: str):
@@ -6,7 +7,7 @@ class Class:
         self.pupils = defaultdict(list)
 
     def add_student(self, student: Student):
-        pass
+        
 
     def __len__(self):
         return 0
