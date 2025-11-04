@@ -30,18 +30,18 @@ class Student:
         else :
             return -1
 
- def report(self):
-        """ génère un rapport formaté des moyennes par matière """
-        report_lines = []
-        header = f"Report for student {self.first_name} {self.last_name}"
-        report_lines.append(header)
-        report_lines.append("+===============+===============+")
-        report_lines.append("|     Topic     |    Average    |")
-        report_lines.append("+===============+===============+")
+    def report(self):
+            """ génère un rapport formaté des moyennes par matière """
+            report_lines = []
+            header = f"Report for student {self.first_name} {self.last_name}"
+            report_lines.append(header)
+            report_lines.append("+===============+===============+")
+            report_lines.append("|     Topic     |    Average    |")
+            report_lines.append("+===============+===============+")
         
-        for topic in self.followed_topics():
-            average = self.compute_average(topic)
-            report_lines.append(f"|  {topic:<13}|    {average:>6.2f}     |") # Format topic left-aligned in 13 spaces, average right-aligned in 6 spaces with 2 decimals
-            report_lines.append("+---------------+---------------+")
+            for topic in self.followed_topics():
+                average = self.compute_average(topic)
+                report_lines.append(f"|  {topic:<13}|    {average:>6.2f}     |") # Format topic left-aligned in 13 spaces, average right-aligned in 6 spaces with 2 decimals
+                report_lines.append("+---------------+---------------+")
         
-        return "\n".join(report_lines) # \n permet de retourner à la ligne
+            return "\n".join(report_lines) # \n permet de retourner à la ligne
