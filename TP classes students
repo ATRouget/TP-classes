@@ -4,15 +4,39 @@ class Student:
     def __init__(self, first_name: str, last_name: str):
         self.first_name = first_name
         self.last_name = last_name
-        self.grades = defaultdict(list)
+        self.grades = {}
+        #self.grades = defaultdict(list)
+        #possible aussi, dans ce cas pas besoin de tester si la clef existe déjà pour ajouter une note
 
     def __repr__(self):
         return self.first_name+" "+self.last_name
     
-    def add_grade(self, topic: str, grade: float):
+    def add_grade(self, topic: str, grade: float) -> None:
         if grade > 20 or grade < 0 :
             raise ValueError("Grade must be between 0 and 20")
-        self.grades[topic].append(grade)
+        if topic in self.grades :
+            self.grades[topic].append(grade)
+        else:
+            self.grades[topic] = [grade]
+    
+    def followed_topics(self) -> list :
+        return list(self.grades.keys()) #dict.keys() renvoie un dictionnaire
+    
+
+try:
+    student = Student("Achille", "Talon")
+    student.add_grade("History", 10.)
+    topics = student.followed_topics()
+    if len(topics) != 1 or "History" not in topics:
+        raise Exception(f"Expecting ['History'] got {topics}")
+except Exception as e:
+    print('OOPS - There is an issue in your followed_topics method')
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
+
+
+
 
 
 
