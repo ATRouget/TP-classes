@@ -1,4 +1,7 @@
 from collections import defaultdict
+
+
+
 class Student:
     def __init__(self, first_name: str, last_name: str):
         self.first_name = first_name
@@ -27,17 +30,18 @@ class Student:
         else :
             return -1
 
-
-try:
-    student = Student("Achille", "Talon")
-    student.add_grade("History", 10.)
-    student.add_grade("History", 12.)
-    if (student.compute_average("History") != 11.):
-        raise Exception("Issue in your average calculation.")
-    if (student.compute_average("French") != -1.):
-        raise Exception("If topic is not followed return -1")
-except Exception as e:
-    print('OOPS - There is an issue in your compute_average method.')
-    print(f"Error message : {e}")
-else:
-    print('Congrats ! Your implementation works !')
+ def report(self):
+        """ génère un rapport formaté des moyennes par matière """
+        report_lines = []
+        header = f"Report for student {self.first_name} {self.last_name}"
+        report_lines.append(header)
+        report_lines.append("+===============+===============+")
+        report_lines.append("|     Topic     |    Average    |")
+        report_lines.append("+===============+===============+")
+        
+        for topic in self.followed_topics():
+            average = self.compute_average(topic)
+            report_lines.append(f"|  {topic:<13}|    {average:>6.2f}     |") # Format topic left-aligned in 13 spaces, average right-aligned in 6 spaces with 2 decimals
+            report_lines.append("+---------------+---------------+")
+        
+        return "\n".join(report_lines) # \n permet de retourner à la ligne
