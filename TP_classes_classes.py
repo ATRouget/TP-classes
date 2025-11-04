@@ -28,5 +28,15 @@ class Class:
                 student = Student(first_name, last_name)
                 self.add_student(student)
 
+    def load_grades_from_file(self, filename: str):
+        with open(filename, 'r', encoding = 'utf-8') as file :
+            for line in file :
+                tuple = line.strip().split(',')
+                first_name, last_name = tuple[0], tuple[1]
+                topic = tuple[2]
+                notes = tuple[3:]
+                student = self.pupils[first_name + " " + last_name]
+                for n in notes :
+                    student.add_grade(topic, float(n))
 
 
