@@ -4,12 +4,27 @@ class Student:
     def __init__(self, first_name: str, last_name: str):
         self.first_name = first_name
         self.last_name = last_name
+        self.grades = defaultdict(list)
 
     def __repr__(self):
         return self.first_name+" "+self.last_name
     
     def add_grade(self, topic: str, grade: float):
+        if grade > 20 or grade < 0 :
+            raise ValueError("Grade must be between 0 and 20")
+        self.grades[topic].append(grade)
 
+
+
+try:
+    student = Student("Achille", "Talon")
+    student.add_grade("History", 10.)
+    student.add_grade("History", 12.)
+except Exception as e:
+    print('OOPS - There is an issue in your add_grade method.')
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
 
 
 try:
